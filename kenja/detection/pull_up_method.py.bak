@@ -1,4 +1,4 @@
-
+from __future__ import absolute_import
 from itertools import product, combinations
 from git.objects import Blob
 from collections import defaultdict
@@ -146,7 +146,7 @@ def detect_shingle_pullup_method(old_commit, new_commit):
                 deleted_classes.add(subclass_method.get_full_class_name())
                 continue
 
-            if subclass_method.extend in list(added_methods.keys()):
+            if subclass_method.extend in added_methods.keys():
                 deleted_methods[subclass_method.extend].append(subclass_method)
 
     pull_up_method_candidates = []
@@ -154,9 +154,9 @@ def detect_shingle_pullup_method(old_commit, new_commit):
     old_org_commit = get_org_commit(old_commit)
     new_org_commit = get_org_commit(new_commit)
 
-    for super_class, v in deleted_methods.items():
+    for super_class, v in deleted_methods.iteritems():
         if super_class not in added_methods:
-            print(('%s does\'nt have a deleted method' % (super_class)))
+            print('%s does\'nt have a deleted method' % (super_class))
             continue
         for dst_method in added_methods[super_class]:
             dst_body = dst_method.get_body()

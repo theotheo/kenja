@@ -1,4 +1,4 @@
-
+from __future__ import absolute_import
 import os
 from kenja_parser.gittree import parse_and_write_gittree
 from subprocess import (
@@ -176,7 +176,7 @@ class BlobParser:
 
     def initialize_parsers(self, supported_language, output_dir, repo_path):
         self.parsers = {}
-        for language, extensions in list(supported_language.items()):
+        for language, extensions in supported_language.items():
             parser = blob_parsers[language](output_dir, repo_path)
             for extension in extensions:
                 self.parsers[extension] = parser
@@ -186,5 +186,5 @@ class BlobParser:
         self.parsers[ext].parse_blob(blob)
 
     def join(self):
-        for parser in list(self.parsers.values()):
+        for parser in self.parsers.values():
             parser.join()

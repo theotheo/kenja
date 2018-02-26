@@ -1,4 +1,4 @@
-
+from __future__ import absolute_import
 from git.repo import Repo
 from collections import defaultdict
 from pyrem_torq.expression import Search
@@ -21,7 +21,7 @@ def seq_outermost_node_iter(seq, label):
             if item[0] == label:
                 yield curPos, item
             else:
-                for i in range(1, len(item)):
+                for i in xrange(1, len(item)):
                     for v in soni_i(curPos + [i], item[i]):
                         yield v
     return soni_i([], seq)
@@ -152,7 +152,7 @@ def detect_extract_method_from_commit(old_commit, new_commit):
         if not (is_method_body(b_path) or is_constructor_body(b_path)):
             continue
         c = get_class(b_path)
-        if c not in list(extracted_method_candidates.keys()):
+        if c not in extracted_method_candidates.keys():
             continue
 
         (deleted_lines, added_lines) = diff_parser.parse(diff.diff)
@@ -218,7 +218,7 @@ if __name__ == '__main__':
     candidate_revisions = set()
     for info in extract_method_information:
         candidate_revisions.add(info[0])
-        print(('"%s","%s","%s","%s","%s","%s","%s","%s"' % info))
+        print('"%s","%s","%s","%s","%s","%s","%s","%s"' % info)
 
-    print(('candidates:', len(extract_method_information)))
-    print(('candidate revisions:', len(candidate_revisions)))
+    print('candidates:', len(extract_method_information))
+    print('candidate revisions:', len(candidate_revisions))

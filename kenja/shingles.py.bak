@@ -1,4 +1,4 @@
-
+from __future__ import absolute_import
 from pyrem_torq import *
 from pyrem_torq.expression import *
 from pyrem_torq.treeseq import seq_split_nodes_of_label
@@ -156,7 +156,7 @@ def main():
     if scriptFile2 is None:
         tokenizer = tokenizing_expr()
         seq = tokenize(tokenizer, script)
-        print(("\n".join(treeseq.seq_pretty(treeseq.seq_remove_strattrs(seq)))))
+        print("\n".join(treeseq.seq_pretty(treeseq.seq_remove_strattrs(seq))))
         return
 
     f = open(scriptFile2, "r")

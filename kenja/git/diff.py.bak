@@ -1,4 +1,4 @@
-
+from __future__ import absolute_import
 import re
 from kenja.historage import get_org_commit
 from git import Repo
@@ -82,7 +82,7 @@ def split_notes_from_refs(repo):
     try:
         notes = repo.commit(note_rev)
     except Exception:
-        print(('{0} is not historage'.format(repo)))
+        print('{0} is not historage'.format(repo))
         raise
 
     return (refs, notes)
@@ -102,7 +102,7 @@ def merge_commits_with_org_commit(a_commits, b_commits):
             commits[org_commit] = (None, commit)
 
     # return list of (a_commit, b_commit, org_commit)
-    return [value + (key,) for key, value in list(commits.items())]
+    return [value + (key,) for key, value in commits.items()]
 
 
 def check_commits(a_repo, b_repo):

@@ -44,7 +44,7 @@ def check_duplicate_entry(path):
 def main():
     import sys
     if len(sys.argv) != 2:
-        print(("Usage: {0} path_of_git_repo".format(sys.argv[0])))
+        print("Usage: {0} path_of_git_repo".format(sys.argv[0]))
         exit()
 
     check_duplicate_entry(sys.argv[1])

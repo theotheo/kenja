@@ -1,8 +1,8 @@
 from git.repo import Repo
-
+from itertools import izip
 from itertools import count
 from git.objects import Commit
-from configparser import RawConfigParser
+from ConfigParser import RawConfigParser
 from kenja.git.util import write_blob_from_path, mktree_from_iter
 from gitdb.util import (hex_to_bin,
                         bin_to_hex

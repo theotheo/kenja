@@ -1,4 +1,4 @@
-
+from __future__ import absolute_import
 from git.repo import Repo
 from gitdb.exc import BadObject
 from kenja.detection.extract_method import detect_extract_method
@@ -75,11 +75,11 @@ class RefactoringDetectionCommandParser:
             candidate_revisions.add(candidate['b_commit'])
             writer.writerow(self.format_for_umldiff(candidate, 'jedit'))
 
-        print('candidates:', len(candidates))
-        print('candidate revisions:', len(candidate_revisions))
+        print 'candidates:', len(candidates)
+        print 'candidate revisions:', len(candidate_revisions)
 
     def print_json(self, candidates):
-        print(json.dumps(candidates, encoding='utf_8', indent=4))
+        print json.dumps(candidates, encoding='utf_8', indent=4)
 
     def format_for_umldiff(self, extract_method_information, package_prefix=None):
         target_method_path = extract_method_information['target_method_path']
@@ -147,10 +147,10 @@ class RefactoringDetectionCommandParser:
                 b_commit = historage.commit(b_commit_hash)
                 extract_method_information.extend(detect_extract_method_from_commit(a_commit, b_commit))
         except ValueError:
-            print("Invalid input.")
+            print "Invalid input."
             return
-        except BadObject as name:
-            print("Invalid hash of the commit:", name.message)
+        except BadObject, name:
+            print "Invalid hash of the commit:", name.message
 
         self.print_candidates(extract_method_information, args.format)
 
